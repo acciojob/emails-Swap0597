@@ -1,9 +1,6 @@
 package com.driver;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.Iterator;
-import java.util.LinkedList;
+import java.util.*;
 
 public class Gmail extends Email {
 
@@ -34,11 +31,20 @@ public class Gmail extends Email {
     public void deleteMail(String message){
         // Each message is distinct
         // If the given message is found in any mail in the inbox, move the mail to trash, else do nothing
-        for(Mail m : inbox){
+        Iterator<Mail> it = inbox.iterator();
+        while(it.hasNext()){
+            Mail m = it.next();
             if(m.getMessage().equals(message)){
-                inbox.remove(m);
+                it.remove();
             }
         }
+//        ListIterator<Mail> itr = inbox.listIterator();
+//        while (itr.hasNext()){
+//            Mail m = itr.next();
+//            if(m.getMessage().equals(message)){
+//                itr.remove();
+//            }
+//        }
     }
 
     public String findLatestMessage(){
@@ -89,9 +95,11 @@ public class Gmail extends Email {
         // clear all mails in the trash
         if(trash.size()==0){return;}
 
-        Iterator it = trash.iterator();
-        while ((it.hasNext())){
+        Iterator<Mail> it = trash.iterator();
+        while(it.hasNext()){
+            Mail m = it.next();
             it.remove();
+
         }
     }
 
