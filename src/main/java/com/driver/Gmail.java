@@ -2,6 +2,7 @@ package com.driver;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.LinkedList;
 
 public class Gmail extends Email {
@@ -88,8 +89,9 @@ public class Gmail extends Email {
         // clear all mails in the trash
         if(trash.size()==0){return;}
 
-        for(Mail m : trash){
-            trash.remove(m);
+        Iterator it = trash.iterator();
+        while ((it.hasNext())){
+            it.remove();
         }
     }
 
