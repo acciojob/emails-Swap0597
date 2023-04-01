@@ -42,6 +42,7 @@ public class Email {
         boolean lower = false;
         boolean digit = false;
         boolean special = false;
+
         if(n < 8){return false;}
 
         for(int i=0; i<n; i++){

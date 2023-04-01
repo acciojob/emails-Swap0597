@@ -5,13 +5,15 @@ import java.util.*;
 public class Gmail extends Email {
 
     int inboxCapacity; //maximum number of mails inbox can store
-    LinkedList<Mail> inbox = new LinkedList<>();
-    LinkedList<Mail> trash = new LinkedList<>();
+    LinkedList<Mail> inbox;
+    LinkedList<Mail> trash;
     //Inbox: Stores mails. Each mail has date (Date), sender (String), message (String). It is guaranteed that message is distinct for all mails.
     //Trash: Stores mails. Each mail has date (Date), sender (String), message (String)
     public Gmail(String emailId, int inboxCapacity) {
         super(emailId);
         this.inboxCapacity = inboxCapacity;
+        inbox = new LinkedList<>();
+        trash = new LinkedList<>();
     }
 
     public void receiveMail(Date date, String sender, String message){
@@ -35,16 +37,10 @@ public class Gmail extends Email {
         while(it.hasNext()){
             Mail m = it.next();
             if(m.getMessage().equals(message)){
+                trash.add(m);
                 it.remove();
             }
         }
-//        ListIterator<Mail> itr = inbox.listIterator();
-//        while (itr.hasNext()){
-//            Mail m = itr.next();
-//            if(m.getMessage().equals(message)){
-//                itr.remove();
-//            }
-//        }
     }
 
     public String findLatestMessage(){
@@ -99,7 +95,6 @@ public class Gmail extends Email {
         while(it.hasNext()){
             Mail m = it.next();
             it.remove();
-
         }
     }
 
